@@ -1,0 +1,100 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Plus Jakarta Sans", "Noto Sans Devanagari", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  /* Soft blue-tinted app canvas (replaces the default slate-50) */
+  --color-slate-50: #f3f6fb;
+
+  /* Brand: deep medical blue for trust and navigation. Teal (Tailwind default) is the positive accent. */
+  --color-brand-50: #eff5ff;
+  --color-brand-100: #dbe8fe;
+  --color-brand-200: #bdd4fd;
+  --color-brand-300: #8fb6fa;
+  --color-brand-400: #5a8ff4;
+  --color-brand-500: #346ce8;
+  --color-brand-600: #1f4fd1;
+  --color-brand-700: #1a3fae;
+  --color-brand-800: #18358a;
+  --color-brand-900: #142b69;
+  --color-brand-950: #0c1a42;
+
+  --shadow-card: 0 1px 2px rgb(12 26 66 / 0.04), 0 4px 14px -6px rgb(12 26 66 / 0.1);
+  --shadow-float: 0 18px 40px -18px rgb(19 34 75 / 0.28);
+  --shadow-nav: 0 -10px 30px -18px rgb(19 34 75 / 0.22);
+
+  --animate-rise: rise 0.5s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  --animate-pop: pop 0.5s cubic-bezier(0.2, 1.4, 0.4, 1) both;
+  --animate-fade: fade 0.2s ease both;
+  --animate-screen: screen 0.26s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  --animate-sheet: sheet 0.3s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  --animate-drawer: drawer 0.3s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+
+  @keyframes rise {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: none; }
+  }
+  @keyframes pop {
+    from { opacity: 0; transform: scale(0.6); }
+    to { opacity: 1; transform: none; }
+  }
+  @keyframes screen {
+    from { opacity: 0; transform: translateY(6px); }
+    to { opacity: 1; transform: none; }
+  }
+  @keyframes fade {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  @keyframes sheet {
+    from { transform: translateY(100%); }
+    to { transform: none; }
+  }
+  @keyframes drawer {
+    from { transform: translateX(100%); }
+    to { transform: none; }
+  }
+}
+
+@layer base {
+  html {
+    -webkit-tap-highlight-color: transparent;
+  }
+  body {
+    @apply bg-slate-50 font-sans text-slate-900 antialiased;
+    font-feature-settings: "cv11", "ss01";
+  }
+  button,
+  [role="button"],
+  a {
+    @apply cursor-pointer;
+  }
+  button:disabled {
+    @apply cursor-not-allowed;
+  }
+  :focus-visible {
+    @apply outline-2 outline-offset-2 outline-brand-500;
+  }
+}
+
+@utility no-scrollbar {
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* Soft dotted backdrop used behind the phone frame and the launcher */
+@utility bg-dots {
+  background-image: radial-gradient(rgb(35 88 222 / 0.1) 1px, transparent 1px);
+  background-size: 22px 22px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
